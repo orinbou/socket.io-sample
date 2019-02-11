@@ -1,9 +1,11 @@
-var app = require('http').createServer(handler)
-var io = require('socket.io')(app);
+var app = require('http').createServer(handler);
+var io = require('socket.io')(app, {
+  path: '/myOwnPath'
+});
 var fs = require('fs');
 
 // HTTP サーバのポートを指定する
-app.listen(80);
+app.listen(9999);
 
 function handler (req, res) {
   fs.readFile(__dirname + '/index.html',
@@ -21,7 +23,7 @@ function handler (req, res) {
 io.on('connection', function (socket) {
   // クライアントへデータ送信
   // emit を使うとイベント名を指定できる
-  socket.emit('news', { hello: 'world' });
+  socket.emit('news', { hello: 'world with custom path' });
   socket.on('my other event', function (data) {
     // クライアントから受け取ったデータを出力する
     console.log(data);

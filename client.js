@@ -2,7 +2,10 @@
 var io = require('socket.io-client');
 
 // 通信先のサーバを指定する
-var socket = io('http://localhost');
+var socket = io('http://localhost:9999', {
+  path: '/myOwnPath'
+});
+
 socket.on('news', function (data) {
   // サーバから受け取ったデータを出力する
   console.log(data);

@@ -26,3 +26,6 @@ node app.js
 ```
 node client.js
 ```
+
+### References
+* https://socket.io/docs/client-api/
